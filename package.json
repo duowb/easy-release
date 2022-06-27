@@ -30,7 +30,6 @@
     "version",
     "conventional-changelog"
   ],
-  
   "files": [
     "dist",
     "bin"
