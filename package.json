@@ -1,0 +1,58 @@
+{
+  "name": "easy-release",
+  "version": "0.0.1",
+  "description": "Easily publish new versions and push",
+  "bin": {
+    "easy-release": "bin/er.mjs"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "esno src/index.ts",
+    "command": "esno src/command.ts",
+    "build": "unbuild",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "esno src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duoWB/easy-release.git"
+  },
+  "keywords": [
+    "easy",
+    "release",
+    "version",
+    "conventional-changelog"
+  ],
+  
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "author": "duowenbo@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duoWB/easy-release/issues"
+  },
+  "homepage": "https://github.com/duoWB/easy-release#readme",
+  "devDependencies": {
+    "@types/semver": "^7.3.10",
+    "@types/yargs": "^17.0.10",
+    "chalk": "4.1.2",
+    "conventional-changelog-cli": "^2.2.2",
+    "enquirer": "^2.3.6",
+    "esno": "^0.16.3",
+    "execa": "^4.1.0",
+    "semver": "^7.3.7",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.7.4",
+    "vitest": "^0.16.0",
+    "yargs": "^17.5.1"
+  }
+}
