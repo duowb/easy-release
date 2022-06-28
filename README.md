@@ -1,7 +1,7 @@
 # easy-release
 Easily publish new versions and push, modeled after the [vue release](https://github.com/vuejs/vue/blob/main/scripts/release.js). thank [vue](https://github.com/vuejs/vue)
 
-### Notice:
+<!-- ### Notice:
 because changelog use `conventional-changelog` so
   please install `conventional-changelog-cli` and add  [`npm run` script](https://docs.npmjs.com/cli/run-script) to your `package.json`:
   ```json
@@ -10,7 +10,7 @@ because changelog use `conventional-changelog` so
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     }
   }
-  ```
+  ``` -->
 
 ## Installing `easy-release`
 ```
