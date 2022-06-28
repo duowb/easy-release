@@ -62,7 +62,7 @@ const main = async () => {
   step("\nUpdating package versions...");
   updatePkgInfo(targetVersion);
 
-  if (args.skipBuild) {
+  if (!args.skipBuild) {
     step("\nBuilding...");
     await run("npm", ["run", "build"]);
   }
