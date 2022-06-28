@@ -1,3 +1,10 @@
+### [0.0.3](https://github.com/duoWB/easy-release/compare/v0.0.2...v0.0.3) (2022-06-28)
+
+
+### Bug Fixes
+
+* update skipBuild ([84519c9](https://github.com/duoWB/easy-release/commit/84519c90c8c524390ea553b42b8683eeb927822a))
+
 ### [0.0.2](https://github.com/duoWB/easy-release/compare/v0.0.1...v0.0.2) (2022-06-28)
 
 
