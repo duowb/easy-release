@@ -15,6 +15,7 @@ export const args = yargs(hideBin(process.argv))
     alias: "sb",
     describe: "skip build",
     type: 'boolean',
+    default: false
   })
   .help()
   .parseSync();
