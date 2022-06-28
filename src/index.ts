@@ -1,8 +1,9 @@
 import enquirer from "enquirer";
 import semver, { ReleaseType } from "semver";
+import chalk from "chalk";
 import { getPkgInfo, run, step, updatePkgInfo, runIfNotDry } from "./utils";
 import { args } from "./command";
-import chalk from "chalk";
+import changelog from "./changelog";
 
 const { prompt } = enquirer;
 
@@ -45,7 +46,7 @@ const main = async () => {
   if (!semver.valid(targetVersion)) {
     throw new Error(`invalid target version: ${targetVersion}`);
   }
-  
+
   const { yes } = await prompt<{
     yes: boolean;
   }>({
@@ -68,7 +69,7 @@ const main = async () => {
 
   step("\nGenerating changelog...");
 
-  await run(`npm`, ["run", "changelog"]);
+  await changelog();
 
   const { stdout } = await run("git", ["diff"], { stdio: "pipe" });
   if (stdout) {

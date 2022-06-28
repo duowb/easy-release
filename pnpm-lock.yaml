@@ -1,28 +1,34 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@types/conventional-changelog': ^3.1.1
   '@types/semver': ^7.3.10
   '@types/yargs': ^17.0.10
+  add-stream: ^1.0.0
   chalk: 4.1.2
-  conventional-changelog-cli: ^2.2.2
+  conventional-changelog: ^3.1.25
   enquirer: ^2.3.6
   esno: ^0.16.3
   execa: ^4.1.0
   semver: ^7.3.7
+  tempfile: ^4.0.0
   typescript: ^4.7.4
   unbuild: ^0.7.4
   vitest: ^0.16.0
   yargs: ^17.5.1
 
 devDependencies:
+  '@types/conventional-changelog': 3.1.1
   '@types/semver': 7.3.10
   '@types/yargs': 17.0.10
+  add-stream: 1.0.0
   chalk: 4.1.2
-  conventional-changelog-cli: 2.2.2
+  conventional-changelog: 3.1.25
   enquirer: 2.3.6
   esno: 0.16.3
   execa: 4.1.0
   semver: 7.3.7
+  tempfile: 4.0.0
   typescript: 4.7.4
   unbuild: 0.7.4
   vitest: 0.16.0
@@ -403,12 +409,59 @@ packages:
     resolution: {integrity: sha512-/zPMqDkzSZ8t3VtxOa4KPq7uzzW978M9Tvh+j7GHKuo6k6GTLxPJ4J5gE5cjfJ26pnXst0N5Hax8Sr0T2Mi9zQ==}
     dev: true
 
+  /@types/conventional-changelog-core/4.2.1:
+    resolution: {integrity: sha512-XdQKXrWvHYvnhuXal4JcvIh3sn9LpcER/WjWDDQHh0yz3/yt0r8TvE5AyJwX6xL9BwJRpE1Ce+A0Hj16nsfI6w==}
+    dependencies:
+      '@types/conventional-changelog-writer': 4.0.1
+      '@types/conventional-commits-parser': 3.0.2
+      '@types/conventional-recommended-bump': 6.1.0
+      '@types/git-raw-commits': 2.0.1
+      '@types/node': 18.0.0
+      '@types/normalize-package-data': 2.4.1
+    dev: true
+
+  /@types/conventional-changelog-writer/4.0.1:
+    resolution: {integrity: sha512-S7lJJByPMkkocMWnDKOtkSLi9yXu619+GhGejPnCiNK1Dgwjf5jjzBxXYgMv47tBG8MokmCCV1sWhI53lFl6FA==}
+    dependencies:
+      '@types/conventional-commits-parser': 3.0.2
+      '@types/node': 18.0.0
+    dev: true
+
+  /@types/conventional-changelog/3.1.1:
+    resolution: {integrity: sha512-+Ei7ZUTHnWseUthn22+MVLQjcQZ0AitqOk/UMl3/3aX5FMPofGeKVn/0HZYabsLN+kCioP3FpBrucrWdcCoMJw==}
+    dependencies:
+      '@types/conventional-changelog-core': 4.2.1
+      '@types/conventional-changelog-writer': 4.0.1
+      '@types/conventional-commits-parser': 3.0.2
+      '@types/node': 18.0.0
+    dev: true
+
+  /@types/conventional-commits-parser/3.0.2:
+    resolution: {integrity: sha512-1kVPUHFaart1iGRFxKn8WNXYEDVAgMb+DLatgql2dGg9jTGf3bNxWtN//C/tDG3ckOLg4u7SSx+qcn8VjzI5zg==}
+    dependencies:
+      '@types/node': 18.0.0
+    dev: true
+
+  /@types/conventional-recommended-bump/6.1.0:
+    resolution: {integrity: sha512-AlhJsbzY2W+9xkn44qvEgeJGY6FbQIluPRZawwU2JgJw+o7PYB/yjeuRsJhNZRKto3j71hDj+hQik10w/7bI4Q==}
+    dependencies:
+      '@types/conventional-changelog-core': 4.2.1
+      '@types/conventional-changelog-writer': 4.0.1
+      '@types/conventional-commits-parser': 3.0.2
+    dev: true
+
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
     dev: true
 
   /@types/estree/0.0.52:
     resolution: {integrity: sha512-BZWrtCU0bMVAIliIV+HJO1f1PR41M7NKjfxrFJwwhKI1KwhwOxYw1SXg9ao+CIMt774nFuGiG6eU+udtbEI9oQ==}
+    dev: true
+
+  /@types/git-raw-commits/2.0.1:
+    resolution: {integrity: sha512-vE2lbXxqJ0AqMDoP4N6d+WVfbcBla9+z8IL6e+37JNQIwYZCYY0z3J7hdpY8D/VGwFZ0yIYQLcqk8eCnfXsaEg==}
+    dependencies:
+      '@types/node': 18.0.0
     dev: true
 
   /@types/minimist/1.2.2:
@@ -653,18 +706,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       q: 1.5.1
-    dev: true
-
-  /conventional-changelog-cli/2.2.2:
-    resolution: {integrity: sha512-8grMV5Jo8S0kP3yoMeJxV2P5R6VJOqK72IiSV9t/4H5r/HiRqEBQ83bYGuz4Yzfdj4bjaAEhZN/FFbsFXr5bOA==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      add-stream: 1.0.0
-      conventional-changelog: 3.1.25
-      lodash: 4.17.21
-      meow: 8.1.2
-      tempfile: 3.0.0
     dev: true
 
   /conventional-changelog-codemirror/2.0.8:
@@ -2275,12 +2316,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /tempfile/3.0.0:
-    resolution: {integrity: sha512-uNFCg478XovRi85iD42egu+eSFUmmka750Jy7L5tfHI5hQKKtbPnxaSaXAbBqCDYrw3wx4tXjKwci4/QmsZJxw==}
-    engines: {node: '>=8'}
+  /tempfile/4.0.0:
+    resolution: {integrity: sha512-dNH6UWyI8kijDmLVb0IJvCG4JZ5uOmy40CLoi/dVySL49v0f0Y+jIN2rE6Hj85y8mIIya1vwpKZlL9jASs5ktg==}
+    engines: {node: '>=12.20'}
     dependencies:
       temp-dir: 2.0.0
-      uuid: 3.4.0
+      uuid: 8.3.2
     dev: true
 
   /text-extensions/1.9.0:
@@ -2443,9 +2484,8 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
-  /uuid/3.4.0:
-    resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+  /uuid/8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
     dev: true
 

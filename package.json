@@ -17,7 +17,6 @@
     "dev": "esno src/index.ts",
     "command": "esno src/command.ts",
     "build": "unbuild",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release": "esno src/index.ts"
   },
   "repository": {
@@ -41,10 +40,11 @@
   },
   "homepage": "https://github.com/duoWB/easy-release#readme",
   "devDependencies": {
+    "@types/conventional-changelog": "^3.1.1",
     "@types/semver": "^7.3.10",
     "@types/yargs": "^17.0.10",
     "chalk": "4.1.2",
-    "conventional-changelog-cli": "^2.2.2",
+    "conventional-changelog": "^3.1.25",
     "enquirer": "^2.3.6",
     "esno": "^0.16.3",
     "execa": "^4.1.0",
