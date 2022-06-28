@@ -5,7 +5,7 @@ export default defineBuildConfig({
     "./src/index"
   ],
   externals: [
-    'chalk', 'semver', 'enquirer', 'execa', 'yargs'
+    'chalk', 'semver', 'enquirer', 'execa', 'yargs', 'conventional-changelog'
   ],
   clean: true,
   declaration: false,
