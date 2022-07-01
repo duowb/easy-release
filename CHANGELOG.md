@@ -1,3 +1,10 @@
+### [0.0.7](https://github.com/duoWB/easy-release/compare/v0.0.6...v0.0.7) (2022-07-01)
+
+
+### Bug Fixes
+
+* update console.log ([3fb447a](https://github.com/duoWB/easy-release/commit/3fb447af6cee889842d7f1a96f0ed4bcbf022e59))
+
 ### [0.0.6](https://github.com/duoWB/easy-release/compare/v0.0.5...v0.0.6) (2022-07-01)
 
 
