@@ -1,21 +1,21 @@
-import yargs from "yargs";
-import { hideBin } from "yargs/helpers";
+import minimist from "minimist";
 
-export const args = yargs(hideBin(process.argv))
-  .option("dry", {
-    describe: "is dry run?",
-    type: "boolean",
-  })
-  .option("preid", {
-    alias: "pre",
-    describe: "pre",
-    type: 'string',
-  })
-  .option("skipBuild", {
-    alias: "sb",
-    describe: "skip build",
-    type: 'boolean',
-    default: false
-  })
-  .help()
-  .parseSync();
+
+type Args = {
+  dry: string
+  preid: string
+  skipBuild: boolean
+}
+
+export const args = minimist<Partial<Args>>(process.argv.slice(2), {
+  alias: {
+    dry: "dry",
+    pre: "preid",
+    sb: "skipBuild",
+  },
+  default: {
+    dry: false,
+    pre: undefined,
+    sb: false,
+  }
+})
