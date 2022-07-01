@@ -1,3 +1,10 @@
+### [0.0.6](https://github.com/duoWB/easy-release/compare/v0.0.5...v0.0.6) (2022-07-01)
+
+
+### Bug Fixes
+
+* update log color ([5c6a14d](https://github.com/duoWB/easy-release/commit/5c6a14df01b7190692db35262f54acacb9817989))
+
 ### [0.0.5](https://github.com/duoWB/easy-release/compare/v0.0.4...v0.0.5) (2022-07-01)
 
 
