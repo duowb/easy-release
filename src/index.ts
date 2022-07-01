@@ -1,16 +1,16 @@
-import enquirer from "enquirer";
-import semver, { ReleaseType } from "semver";
-import chalk from "chalk";
+import prompts from "prompts";
+import { prerelease, inc, valid } from "semver";
+import type { ReleaseType } from "semver";
 import { getPkgInfo, run, step, updatePkgInfo, runIfNotDry } from "./utils";
 import { args } from "./command";
 import changelog from "./changelog";
-
-const { prompt } = enquirer;
+import { log, logColor } from "./log";
 
 const { name: publishedName, version: currentVersion } = getPkgInfo();
 const preId = (args.preid ||
-  (semver.prerelease(currentVersion) &&
-    semver.prerelease(currentVersion)![0])) as string | undefined;
+  (prerelease(currentVersion) && prerelease(currentVersion)![0])) as
+  | string
+  | undefined;
 
 const preArr: Partial<ReleaseType>[] = preId
   ? ["prepatch", "preminor", "premajor", "prerelease"]
@@ -23,33 +23,30 @@ const versionIncrements: Partial<ReleaseType>[] = [
   ...preArr,
 ];
 
-const inc = (i: ReleaseType) => semver.inc(currentVersion, i, preId);
-
 const main = async () => {
   let targetVersion = args._[0] as string;
 
   if (!targetVersion) {
     // 没有指定版本，就提供选择
-    const { release } = await prompt<{
-      release: string;
-    }>({
+    const { release } = await prompts({
       type: "select",
       name: "release",
       message: `Select ${publishedName} release type`,
-      choices: versionIncrements.map((i) => `${i} (${inc(i)})`),
+      choices: versionIncrements.map((i) => {
+        const ic = inc(currentVersion, i, preId);
+        return {
+          title: `${i} (${ic})`,
+          value: `${ic}`,
+        };
+      }),
     });
-    const matchArray = release.match(/\((.*)\)/);
-    if (Array.isArray(matchArray)) {
-      targetVersion = matchArray[1];
-    }
+    targetVersion = release;
   }
-  if (!semver.valid(targetVersion)) {
+  if (!valid(targetVersion)) {
     throw new Error(`invalid target version: ${targetVersion}`);
   }
 
-  const { yes } = await prompt<{
-    yes: boolean;
-  }>({
+  const { yes } = await prompts({
     type: "confirm",
     name: "yes",
     message: `Releasing ${publishedName} v${targetVersion}. Confirm?`,
@@ -64,18 +61,18 @@ const main = async () => {
 
   if (!args.skipBuild) {
     step("\nBuilding...");
-    await run("npm", ["run", "build"]);
+    await run("npm run build");
   }
 
   step("\nGenerating changelog...");
 
   await changelog();
 
-  const { stdout } = await run("git", ["diff"], { stdio: "pipe" });
+  const { stdout } = await run("git diff", { stdio: "pipe" });
   if (stdout) {
     step("\nCommitting changes...");
-    await runIfNotDry("git", ["add", "-A"]);
-    await runIfNotDry("git", ["commit", "-m", `release: v${targetVersion}`]);
+    await runIfNotDry("git add -A");
+    await runIfNotDry(`git commit -m release: v${targetVersion}`);
   } else {
     console.log("No changes to commit.");
   }
@@ -83,18 +80,21 @@ const main = async () => {
   step("\nPublishing packages...");
 
   try {
-    await runIfNotDry("npm", ["publish"], { stdio: "pipe" });
+    await runIfNotDry("npm publish", { stdio: "pipe" });
     console.log(
-      chalk.green(`Successfully published ${publishedName}@${targetVersion}`)
+      log(
+        `Successfully published ${publishedName}@${targetVersion}`,
+        logColor.green
+      )
     );
   } catch (error) {
-    console.log(chalk.red(`Skipping already published: ${publishedName}`));
+    log(`Skipping already published: ${publishedName}`, logColor.red);
   }
 
   step("\nPushing to Git...");
-  await runIfNotDry("git", ["tag", `v${targetVersion}`]);
-  await runIfNotDry("git", ["push", "origin", `refs/tags/v${targetVersion}`]);
-  await runIfNotDry("git", ["push"]);
+  await runIfNotDry(`git tag v${targetVersion}`);
+  await runIfNotDry(`git push origin refs/tags/v${targetVersion}`);
+  await runIfNotDry("git push");
 };
 
 main();
