@@ -72,7 +72,8 @@ const main = async () => {
   if (stdout) {
     step("\nCommitting changes...");
     await runIfNotDry("git add -A");
-    await runIfNotDry(`git commit -m release: v${targetVersion}`);
+    // Use slash escape because it contains spaces
+    await runIfNotDry(`git commit -m release:\\ v${targetVersion}`);
   } else {
     console.log("No changes to commit.");
   }
