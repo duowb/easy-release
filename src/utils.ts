@@ -1,23 +1,25 @@
 import { execaCommand } from "execa";
 import fs from "fs";
 import path from "path";
-// 获取运行指令后面的参数
 import { args } from "./command";
 import { logColor, log } from "./log";
 
 const isDryRun = args.dry;
 export const run = (command: string, opts = {}) =>
-execaCommand(command, { stdio: "inherit", ...opts });
+  execaCommand(command, { stdio: "inherit", ...opts });
 
-export const dryRun = async (command: string, opts = {}) =>
-  log(
-    `[dryRun] ${command}\n[options] ${JSON.stringify(opts)}`,
-    logColor.FgBlue
-  );
+export const dryRun = async (command: string, opts = {}) => {
+  console.log();
+  log(`[dryRun] ${command}`, logColor.FgBlue);
+  log(`[options] ${JSON.stringify(opts)}`, logColor.FgYellow);
+};
 
 export const runIfNotDry = isDryRun ? dryRun : run;
 
-export const step = (msg: string) => log(msg, logColor.BgMagenta);
+export const step = (msg: string) => {
+  console.log();
+  log(msg, logColor.BgMagenta);
+};
 
 const pkgPath = path.resolve(process.cwd(), "package.json");
 

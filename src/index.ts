@@ -56,21 +56,21 @@ const main = async () => {
     return;
   }
 
-  step("\nUpdating package versions...");
+  step("Updating package versions...");
   updatePkgInfo(targetVersion);
 
   if (!args.skipBuild) {
-    step("\nBuilding...");
+    step("Building...");
     await run("npm run build");
   }
 
-  step("\nGenerating changelog...");
+  step("Generating changelog...");
 
   await changelog();
 
   const { stdout } = await run("git diff", { stdio: "pipe" });
   if (stdout) {
-    step("\nCommitting changes...");
+    step("Committing changes...");
     await runIfNotDry("git add -A");
     // Use slash escape because it contains spaces
     await runIfNotDry(`git commit -m release:\\ v${targetVersion}`);
@@ -78,7 +78,7 @@ const main = async () => {
     log("No changes to commit.", logColor.FgRed);
   }
   // publish packages
-  step("\nPublishing packages...");
+  step("Publishing packages...");
 
   try {
     await runIfNotDry("npm publish", { stdio: "pipe" });
@@ -90,7 +90,7 @@ const main = async () => {
     log(`Skipping already published: ${publishedName}`, logColor.FgRed);
   }
 
-  step("\nPushing to Git...");
+  step("Pushing to Git...");
   await runIfNotDry(`git tag v${targetVersion}`);
   await runIfNotDry(`git push origin refs/tags/v${targetVersion}`);
   await runIfNotDry("git push");
