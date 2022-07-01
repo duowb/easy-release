@@ -1,8 +1,9 @@
 import { execaCommand } from "execa";
-import fs from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import path from "path";
 import { args } from "./command";
 import { logColor, log } from "./log";
+import { PackageInfo } from "./types";
 
 const isDryRun = args.dry;
 export const run = (command: string, opts = {}) =>
@@ -23,12 +24,11 @@ export const step = (msg: string) => {
 
 const pkgPath = path.resolve(process.cwd(), "package.json");
 
-export const getPkgInfo = () => {
+export function getPkgInfo() {
   try {
-    const { version, name } = JSON.parse(fs.readFileSync(pkgPath, "utf-8")) as {
-      version: string;
-      name: string;
-    };
+    const { version, name } = JSON.parse(
+      readFileSync(pkgPath, "utf-8")
+    ) as PackageInfo;
     return {
       version,
       name,
@@ -36,10 +36,10 @@ export const getPkgInfo = () => {
   } catch (error) {
     throw new Error("not package info...");
   }
-};
+}
 
-export const updatePkgInfo = (version: string) => {
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));
+export function updatePkgInfo(version: string) {
+  const pkg = JSON.parse(readFileSync(pkgPath, "utf-8"));
   pkg.version = version;
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
-};
+  writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
+}
