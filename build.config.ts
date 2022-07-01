@@ -2,7 +2,7 @@ import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
   entries: ["./src/index"],
-  externals: ["conventional-changelog"],
+  // externals: ["conventional-changelog"],
   clean: true,
   declaration: false,
   rollup: {

@@ -39,15 +39,17 @@
     "url": "https://github.com/duoWB/easy-release/issues"
   },
   "homepage": "https://github.com/duoWB/easy-release#readme",
+  "dependencies": {
+    "conventional-changelog": "^3.1.25",
+    "prompts": "^2.4.2",
+    "execa": "^6.1.0",
+    "semver": "^7.3.7"
+  },
   "devDependencies": {
     "@types/conventional-changelog": "^3.1.1",
     "@types/semver": "^7.3.10",
     "@types/prompts": "^2.4.0",
-    "conventional-changelog": "^3.1.25",
-    "prompts": "^2.4.2",
     "esno": "^0.16.3",
-    "execa": "^6.1.0",
-    "semver": "^7.3.7",
     "typescript": "^4.7.4",
     "unbuild": "^0.7.4",
     "vitest": "^0.16.0",
