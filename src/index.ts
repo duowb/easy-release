@@ -75,18 +75,16 @@ const main = async () => {
     // Use slash escape because it contains spaces
     await runIfNotDry(`git commit -m release:\\ v${targetVersion}`);
   } else {
-    console.log("No changes to commit.");
+    log("No changes to commit.", logColor.red);
   }
   // publish packages
   step("\nPublishing packages...");
 
   try {
     await runIfNotDry("npm publish", { stdio: "pipe" });
-    console.log(
-      log(
-        `Successfully published ${publishedName}@${targetVersion}`,
-        logColor.green
-      )
+    log(
+      `Successfully published ${publishedName}@${targetVersion}`,
+      logColor.green
     );
   } catch (error) {
     log(`Skipping already published: ${publishedName}`, logColor.red);
