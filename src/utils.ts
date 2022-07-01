@@ -11,13 +11,13 @@ execaCommand(command, { stdio: "inherit", ...opts });
 
 export const dryRun = async (command: string, opts = {}) =>
   log(
-    `[dryRun] ${command}}\n[options] ${JSON.stringify(opts)}`,
-    logColor.blue
+    `[dryRun] ${command}\n[options] ${JSON.stringify(opts)}`,
+    logColor.FgBlue
   );
 
 export const runIfNotDry = isDryRun ? dryRun : run;
 
-export const step = (msg: string) => log(msg, logColor.hui);
+export const step = (msg: string) => log(msg, logColor.BgMagenta);
 
 const pkgPath = path.resolve(process.cwd(), "package.json");
 
