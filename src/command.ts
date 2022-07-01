@@ -1,21 +1,19 @@
 import minimist from "minimist";
+import { CommandArgs } from "./types";
 
-
-type Args = {
-  dry: string
-  preid: string
-  skipBuild: boolean
-}
-
-export const args = minimist<Partial<Args>>(process.argv.slice(2), {
+export const args = minimist<CommandArgs>(process.argv.slice(2), {
   alias: {
     dry: "dry",
     pre: "preid",
     sb: "skipBuild",
+    sc: "skipChangelog",
+    sp: "skipPublish",
   },
   default: {
     dry: false,
     pre: undefined,
     sb: false,
-  }
-})
+    sc: false,
+    sp: false,
+  },
+});

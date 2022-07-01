@@ -1,99 +1,28 @@
-import prompts from "prompts";
-import { prerelease, inc, valid } from "semver";
-import type { ReleaseType } from "semver";
-import { getPkgInfo, run, step, updatePkgInfo, runIfNotDry } from "./utils";
+import { run, step } from "./utils";
 import { args } from "./command";
 import changelog from "./changelog";
-import { log, logColor } from "./log";
-
-const { name: publishedName, version: currentVersion } = getPkgInfo();
-const preId = (args.preid ||
-  (prerelease(currentVersion) && prerelease(currentVersion)![0])) as
-  | string
-  | undefined;
-
-const preArr: Partial<ReleaseType>[] = preId
-  ? ["prepatch", "preminor", "premajor", "prerelease"]
-  : [];
-
-const versionIncrements: Partial<ReleaseType>[] = [
-  "patch",
-  "minor",
-  "major",
-  ...preArr,
-];
+import { selectVersion } from "./version";
+import { gitPush, gitCommit } from "./git";
+import { publishPackage } from "./publish";
 
 const main = async () => {
-  let targetVersion = args._[0] as string;
-
-  if (!targetVersion) {
-    // 没有指定版本，就提供选择
-    const { release } = await prompts({
-      type: "select",
-      name: "release",
-      message: `Select ${publishedName} release type`,
-      choices: versionIncrements.map((i) => {
-        const ic = inc(currentVersion, i, preId);
-        return {
-          title: `${i} (${ic})`,
-          value: `${ic}`,
-        };
-      }),
-    });
-    targetVersion = release;
-  }
-  if (!valid(targetVersion)) {
-    throw new Error(`invalid target version: ${targetVersion}`);
-  }
-
-  const { yes } = await prompts({
-    type: "confirm",
-    name: "yes",
-    message: `Releasing ${publishedName} v${targetVersion}. Confirm?`,
-  });
-
-  if (!yes) {
-    return;
-  }
-
-  step("Updating package versions...");
-  updatePkgInfo(targetVersion);
+  const info = await selectVersion();
 
   if (!args.skipBuild) {
     step("Building...");
     await run("npm run build");
   }
 
-  step("Generating changelog...");
-
-  await changelog();
-
-  const { stdout } = await run("git diff", { stdio: "pipe" });
-  if (stdout) {
-    step("Committing changes...");
-    await runIfNotDry("git add -A");
-    // Use slash escape because it contains spaces
-    await runIfNotDry(`git commit -m release:\\ v${targetVersion}`);
-  } else {
-    log("No changes to commit.", logColor.FgRed);
-  }
-  // publish packages
-  step("Publishing packages...");
-
-  try {
-    await runIfNotDry("npm publish", { stdio: "pipe" });
-    log(
-      `Successfully published ${publishedName}@${targetVersion}`,
-      logColor.FgGreen
-    );
-  } catch (error) {
-    log(`Skipping already published: ${publishedName}`, logColor.FgRed);
+  if (!args.skipChangelog) {
+    step("Generating changelog...");
+    await changelog();
   }
 
-  step("Pushing to Git...");
-  await runIfNotDry(`git tag v${targetVersion}`);
-  await runIfNotDry(`git push origin refs/tags/v${targetVersion}`);
-  await runIfNotDry("git push");
+  await gitCommit(info);
+
+  await publishPackage(info);
+
+  await gitPush(info);
 };
 
 main();
