@@ -17,7 +17,8 @@
     "dev": "esno src/index.ts",
     "command": "esno src/command.ts",
     "build": "unbuild",
-    "release": "esno src/index.ts"
+    "release": "esno src/index.ts",
+    "test": "vitest run"
   },
   "repository": {
     "type": "git",
