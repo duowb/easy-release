@@ -1,3 +1,10 @@
+### [0.0.8](https://github.com/duoWB/easy-release/compare/v0.0.7...v0.0.8) (2022-07-02)
+
+
+### Features
+
+* split file ([55dd0c1](https://github.com/duoWB/easy-release/commit/55dd0c14c0d6f8f0e8d884ca89accaab13616f0a))
+
 ### [0.0.7](https://github.com/duoWB/easy-release/compare/v0.0.6...v0.0.7) (2022-07-01)
 
 
