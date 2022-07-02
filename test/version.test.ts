@@ -1,15 +1,20 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import type { PromptObject } from "prompts";
 
-import { selectVersion } from "../src/version";
-
+afterEach(() => {
+  vi.resetModules();
+});
 describe("version", () => {
   vi.mock("prompts", () => {
     return {
       default: ({ type, name, choices }: PromptObject) => {
         const n = name as string;
-        if (type === "select") {
-          const v = choices![0].value;
+        if (type === "select" && choices) {
+          let i = 0;
+          if(choices.length > 3){
+            i = 3
+          }
+          const v = choices[i].value;
           return {
             [n]: v,
           };
@@ -34,13 +39,27 @@ describe("version", () => {
     };
   });
 
-  test("selectVersion", async  () => {
-    const info = await selectVersion()
+  test("selectVersion", async () => {
+    const { selectVersion } = await import("../src/version");
+    const info = await selectVersion();
     expect(info.name).toBe("easy-release");
-    expect(info.version).toMatchInlineSnapshot('"0.0.8"')
+    expect(info.version).toMatchInlineSnapshot('"0.0.8"');
   });
 
-  afterEach(() => {
-    vi.unmock("fs"); // 每次测试运行后清除测试数据
+  test("specified version", async () => {
+    process.argv = ["123", "321", "0.0.9"];
+    const { selectVersion } = await import("../src/version");
+    const info = await selectVersion();
+    expect(info.version).toMatchInlineSnapshot('"0.0.9"')
+    expect(info.name).toMatchInlineSnapshot('"easy-release"')
+  });
+
+  
+  test("specified pre = beta", async () => {
+    process.argv = ["123", "321", "--pre=beta"];
+    const { selectVersion } = await import("../src/version");
+    const info = await selectVersion();
+    expect(info.version).toMatchInlineSnapshot('"0.0.8-beta.0"')
+    expect(info.name).toMatchInlineSnapshot('"easy-release"')
   });
 });
