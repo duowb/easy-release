@@ -34,7 +34,7 @@ export function getPkgInfo() {
       name,
     };
   } catch (error) {
-    throw new Error("not package info...");
+    throw new Error(`${pkgPath} not find package info...`);
   }
 }
 
