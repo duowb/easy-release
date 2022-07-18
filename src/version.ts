@@ -1,10 +1,11 @@
 import prompts from "prompts";
-import { prerelease, inc, valid } from "semver";
+import semver from "semver";
 import type { ReleaseType } from "semver";
 import { args } from "./command";
 import { getPkgInfo, step, updatePkgInfo } from "./utils";
 import { PackageInfo } from "./types";
 
+const { prerelease, inc, valid } = semver;
 const { name: publishedName, version: currentVersion } = getPkgInfo();
 let targetVersion = args._[0] as string;
 const preId = (args.preid ||
