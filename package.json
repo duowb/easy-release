@@ -1,6 +1,6 @@
 {
   "name": "easy-release",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Easily publish new versions and push",
   "bin": {
     "easy-release": "bin/er.mjs"

@@ -1,3 +1,11 @@
+### [0.0.9](https://github.com/duoWB/easy-release/compare/v0.0.8...v0.0.9) (2022-07-26)
+
+
+### Bug Fixes
+
+* update error ([e9be1f5](https://github.com/duoWB/easy-release/commit/e9be1f5eba59b80f40e5163d4525c6acd6ea696d))
+* update import semver ([b9c23f7](https://github.com/duoWB/easy-release/commit/b9c23f759064fd803fbfbb70ba1ee9816e6763ba))
+
 ### [0.0.8](https://github.com/duoWB/easy-release/compare/v0.0.7...v0.0.8) (2022-07-02)
 
 
