@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@types/conventional-changelog': ^3.1.1
@@ -187,6 +187,8 @@ packages:
     resolution: {integrity: sha512-YZWVaglMiplo7v8f1oMQ5ZPQr0vn7HPeZXxXWsxXJRjGVrzUFn9OxFQl1sb5wzfootjA/yChhW84BV+383FSOw==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.18.4
     dev: true
 
   /@babel/standalone/7.18.5:
@@ -2139,7 +2141,7 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup-plugin-dts/4.2.2_rollup@2.75.7+typescript@4.7.4:
+  /rollup-plugin-dts/4.2.2_okefoyb4o5sittgqayreuhurei:
     resolution: {integrity: sha512-A3g6Rogyko/PXeKoUlkjxkP++8UDVpgA7C+Tdl77Xj4fgEaIjPSnxRmR53EzvoYy97VMVwLAOcWJudaVAuxneQ==}
     engines: {node: '>=v12.22.11'}
     peerDependencies:
@@ -2153,7 +2155,7 @@ packages:
       '@babel/code-frame': 7.16.7
     dev: true
 
-  /rollup-plugin-esbuild/4.9.1_esbuild@0.14.47+rollup@2.75.7:
+  /rollup-plugin-esbuild/4.9.1_qrpxjnto46iodaa4efitqiw3he:
     resolution: {integrity: sha512-qn/x7Wz9p3Xnva99qcb+nopH0d2VJwVnsxJTGEg+Sh2Z3tqQl33MhOwzekVo1YTKgv+yAmosjcBRJygMfGrtLw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -2478,8 +2480,8 @@ packages:
       pretty-bytes: 6.0.0
       rimraf: 3.0.2
       rollup: 2.75.7
-      rollup-plugin-dts: 4.2.2_rollup@2.75.7+typescript@4.7.4
-      rollup-plugin-esbuild: 4.9.1_esbuild@0.14.47+rollup@2.75.7
+      rollup-plugin-dts: 4.2.2_okefoyb4o5sittgqayreuhurei
+      rollup-plugin-esbuild: 4.9.1_qrpxjnto46iodaa4efitqiw3he
       scule: 0.2.1
       typescript: 4.7.4
       untyped: 0.4.4
