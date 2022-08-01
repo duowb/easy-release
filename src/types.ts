@@ -4,6 +4,7 @@ export type CommandArgs = {
   skipBuild?: boolean;
   skipChangelog?: boolean;
   skipPublish?: boolean;
+  tag?: string;
 };
 
 export type PackageInfo = {

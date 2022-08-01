@@ -8,10 +8,12 @@ export const args = minimist<CommandArgs>(process.argv.slice(2), {
     sb: "skipBuild",
     sc: "skipChangelog",
     sp: "skipPublish",
+    tag: "tag"
   },
   default: {
     dry: false,
     pre: undefined,
+    tag: undefined,
     sb: false,
     sc: false,
     sp: false,
