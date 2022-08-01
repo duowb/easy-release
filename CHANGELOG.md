@@ -1,3 +1,5 @@
+### [0.0.10](https://github.com/duoWB/easy-release/compare/v0.0.9...v0.0.10) (2022-08-01)
+
 ### [0.0.9](https://github.com/duoWB/easy-release/compare/v0.0.8...v0.0.9) (2022-07-26)
 
 
