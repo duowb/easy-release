@@ -1,3 +1,6 @@
+
+[english](./README_zh.md)
+
 # easy-release
 轻松发布新版本并推送。
 
