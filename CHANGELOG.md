@@ -1,3 +1,10 @@
+### [0.0.11](https://github.com/duoWB/easy-release/compare/v0.0.10...v0.0.11) (2023-06-08)
+
+
+### Features
+
+* add check package-lock publish ([1e4a208](https://github.com/duoWB/easy-release/commit/1e4a208a908b1164e934ec3b2b18be9ff5c5d9bc))
+
 ### [0.0.10](https://github.com/duoWB/easy-release/compare/v0.0.9...v0.0.10) (2022-08-01)
 
 ### [0.0.9](https://github.com/duoWB/easy-release/compare/v0.0.8...v0.0.9) (2022-07-26)
