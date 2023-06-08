@@ -18,6 +18,7 @@
     "command": "esno src/command.ts",
     "build": "unbuild",
     "release": "esno src/index.ts",
+    "cc": "esno src/changelog.ts",
     "test": "vitest run"
   },
   "repository": {
