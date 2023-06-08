@@ -15,7 +15,6 @@ export const LOCKS: Record<string, PackageManage> = {
 };
 
 const isDryRun = args.dry;
-console.log("🚀 ~ file: utils.ts:18 ~ isDryRun:", isDryRun)
 export const run = (command: string, opts = {}) =>
   execaCommand(command, { stdio: "inherit", ...opts });
 
