@@ -1,5 +1,6 @@
 import { execaCommand } from "execa";
 import { readFileSync, writeFileSync, existsSync } from "fs";
+import { findUp } from "find-up";
 import path from "path";
 import { args } from "./command";
 import { logColor, log } from "./log";
@@ -53,14 +54,11 @@ export function updatePkgInfo(version: string) {
   writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
 }
 
-export function checkNpmPackageManage() {
+export async function checkNpmPackageManage() {
+  let agent: PackageManage = "npm";
   const cwd = process.cwd();
-  for (const lock in LOCKS) {
-    const lockPath = path.resolve(cwd, lock);
-    const isExists = existsSync(lockPath);
-    if (isExists) {
-      return LOCKS[lock]
-    }
-  }
-  return 'npm'
+  const lockPath = await findUp(Object.keys(LOCKS), { cwd });
+
+  if (lockPath) agent = LOCKS[path.basename(lockPath)];
+  return agent;
 }

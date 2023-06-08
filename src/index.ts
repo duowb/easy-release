@@ -25,4 +25,4 @@ const main = async () => {
   await gitPush(info);
 };
 
-main();
+main().catch(console.log);

@@ -16,7 +16,7 @@ export async function publishPackage({ name, version }: PackageInfo) {
   } else if (version.includes("rc")) {
     releaseTag = "rc";
   }
-  const packageManage = checkNpmPackageManage();
+  const packageManage = await checkNpmPackageManage();
   log(`use ${packageManage} publish ${name}@${version}`, logColor.FgGreen);
   try {
     const tag = releaseTag ? `--tag ${releaseTag}` : "";
