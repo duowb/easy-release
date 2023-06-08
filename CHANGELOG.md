@@ -1,3 +1,10 @@
+### [0.0.12](https://github.com/duoWB/easy-release/compare/v0.0.11...v0.0.12) (2023-06-08)
+
+
+### Features
+
+* support pnpm workspace ([6dd8f16](https://github.com/duoWB/easy-release/commit/6dd8f166bf5df7f0a9d99622ac404dd291874a6e))
+
 ### [0.0.11](https://github.com/duoWB/easy-release/compare/v0.0.10...v0.0.11) (2023-06-08)
 
 
